@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Gift for Bala ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff5f8f, #ff9ab8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+    }
+
+    /* GIFT SCREEN */
+    .gift-screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(135deg, #ff4d79, #ff85a2);
+      z-index: 5;
+    }
+
+    .gift {
+      font-size: 90px;
+      animation: bounce 1.5s infinite;
+      cursor: pointer;
+    }
+
+    .gift-text {
+      margin-top: 15px;
+      font-size: 1.3em;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* MESSAGE BOX */
+    .box {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 30px 25px;
+      border-radius: 22px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      max-width: 330px;
+      z-index: 2;
+      display: none;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.15em;
+      line-height: 1.6;
+    }
+
+    /* HEARTS */
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+      opacity: 0.85;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -9px; left: 0; }
+    .heart::after { left: -9px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GIFT SCREEN -->
+  <div class="gift-screen" id="giftScreen">
+    <div class="gift">🎁</div>
+    <div class="gift-text">Bala, open this gift 💝</div>
+  </div>
+
+  <!-- MESSAGE -->
+  <div class="box" id="messageBox">
+    <h1>❤️ I Love You Bala ❤️</h1>
+    <p>
+      👩‍❤️‍👨 Bala, tu mazya ayushyatli saglyat sundar goshta ahe 👩‍❤️‍👨 <br><br>
+
+      maza tuzyavr khup jeev ahe,  
+      mi tula prattek veli miss karto, tuzi khup athav yeti 🥺💖 <br>
+
+      Mazya hasnyat, mazya athvnit, mazya vicharat, mazya zopet, mazya godhdit😜😁  
+      saglikade fakt tuch ahes 💓 <br><br>
+
+      Happy Valentine’s Day, Bala 💌 <br>
+      Forever yours 😘
+    </p>
+  </div>
+
+  <!-- MUSIC -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const gift = document.getElementById("giftScreen");
+    const box = document.getElementById("messageBox");
+    const music = document.getElementById("bgMusic");
+
+    gift.addEventListener("click", () => {
+      gift.style.display = "none";
+      box.style.display = "block";
+      music.play();
+
+      setInterval(createHeart, 250);
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+  </script>
+
+</body>
+</html>
